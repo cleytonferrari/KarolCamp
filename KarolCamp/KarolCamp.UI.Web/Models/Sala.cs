@@ -1,8 +1,7 @@
 ﻿namespace KarolCamp.UI.Web.Models
 {
-    public class Sala
+    public class Sala : Entidade
     {
-        public string Id { get; set; }
         public string Nome { get; set; }
     }
 }
