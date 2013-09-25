@@ -1,17 +1,10 @@
 ﻿@model IEnumerable<KarolCamp.UI.Web.Models.Palestrante>
 
 @{
-    Layout = null;
+    ViewBag.Title = "";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
     <p>
         @Html.ActionLink("Cadastrar", "Cadastrar")
     </p>
@@ -55,5 +48,4 @@
     }
     
     </table>
-</body>
-</html>
+

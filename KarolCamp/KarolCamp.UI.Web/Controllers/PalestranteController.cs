@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using KarolCamp.UI.Web.Aplicacao;
 using KarolCamp.UI.Web.Models;
 
@@ -21,11 +22,13 @@ namespace KarolCamp.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(Palestrante palestrante)
+        public ActionResult Cadastrar(Palestrante palestrante, HttpPostedFileBase foto)
         {
             if (ModelState.IsValid)
             {
                 var app = new PalestranteAplicacao();
+                var arquivo = app.SalvarArquivo(foto.InputStream, foto.FileName, foto.ContentType);
+                palestrante.FotoId = arquivo;
                 app.Salvar(palestrante);
                 return RedirectToAction("Index");
             }
@@ -43,11 +46,18 @@ namespace KarolCamp.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Palestrante palestrante)
+        public ActionResult Editar(Palestrante palestrante, HttpPostedFileBase foto)
         {
             if (ModelState.IsValid)
             {
                 var app = new PalestranteAplicacao();
+                if (foto != null)
+                {
+                    var arquivo = app.SalvarArquivo(foto.InputStream, foto.FileName, foto.ContentType);
+                    palestrante.FotoId = arquivo; 
+                    app.ExcluirArquivo(arquivo);
+                }
+
                 app.Salvar(palestrante);
                 return RedirectToAction("Index");
             }

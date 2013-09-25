@@ -50,6 +50,7 @@ namespace KarolCamp.UI.Web.Repositorio
 
         public void ExcluirArquivo(string id)
         {
+            //Todo: verificar que não esta excluido a foto
             var gfs = new MongoGridFS(database);
             gfs.Delete(Query.EQ("_id", id));
         }

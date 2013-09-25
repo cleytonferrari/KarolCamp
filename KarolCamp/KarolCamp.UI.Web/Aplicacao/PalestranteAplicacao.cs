@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using KarolCamp.UI.Web.Models;
@@ -26,6 +27,10 @@ namespace KarolCamp.UI.Web.Aplicacao
 
         public void Excluir(string id)
         {
+            //Exclui a foto do palestrante
+            var palestrante = ListarPorId(id);
+            ExcluirArquivo(palestrante.FotoId);
+
             contexto.Collection.Remove(Query.EQ("_id", id));
         }
 
@@ -39,5 +44,18 @@ namespace KarolCamp.UI.Web.Aplicacao
             return contexto.Collection.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
 
+        public string SalvarArquivo(Stream arquivo, string nome, string contentType)
+        {
+            return contexto.InserirArquivo(arquivo, nome, contentType);
+        }
+        public void ExcluirArquivo(string idArquivo)
+        {
+            contexto.ExcluirArquivo(idArquivo);
+        }
+
+        public Dictionary<string, string> RetornaArquivo(string id, ref MemoryStream retorno)
+        {
+            return contexto.BuscarArquivo(id, ref retorno);
+        }
     }
 }
