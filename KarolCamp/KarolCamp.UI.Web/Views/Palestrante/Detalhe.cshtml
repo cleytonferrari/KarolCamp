@@ -1,0 +1,51 @@
+﻿@model KarolCamp.UI.Web.Models.Palestrante
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detalhe</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Palestrante</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Nome)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Twitter)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Twitter)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Bio)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Bio)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.FotoId)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FotoId)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Editar", "Editar", new { id=Model.Id }) |
+        @Html.ActionLink("Cancelar", "Index")
+    </p>
+</body>
+</html>

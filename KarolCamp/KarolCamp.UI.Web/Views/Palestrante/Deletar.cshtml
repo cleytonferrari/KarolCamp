@@ -1,0 +1,56 @@
+﻿@model KarolCamp.UI.Web.Models.Palestrante
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Deletar</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend>Palestrante</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Nome)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Twitter)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Twitter)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Bio)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Bio)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.FotoId)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FotoId)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Cancelar", "Index")
+        </p>
+    }
+
+</body>
+</html>
