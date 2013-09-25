@@ -53,9 +53,9 @@ namespace KarolCamp.UI.Web.Controllers
                 var app = new PalestranteAplicacao();
                 if (foto != null)
                 {
+                    app.ExcluirArquivo(palestrante.FotoId);
                     var arquivo = app.SalvarArquivo(foto.InputStream, foto.FileName, foto.ContentType);
-                    palestrante.FotoId = arquivo; 
-                    app.ExcluirArquivo(arquivo);
+                    palestrante.FotoId = arquivo;
                 }
 
                 app.Salvar(palestrante);

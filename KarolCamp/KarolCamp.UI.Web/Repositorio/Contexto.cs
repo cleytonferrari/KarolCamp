@@ -8,6 +8,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.Options;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
@@ -32,6 +33,7 @@ namespace KarolCamp.UI.Web.Repositorio
             database = server.GetDatabase(url.DatabaseName);
             Collection = database.GetCollection<T>(typeof(T).Name.ToLower());
             DateTimeSerializationOptions.Defaults = new DateTimeSerializationOptions(DateTimeKind.Local, BsonType.Document);
+
             //Ajuda no migration, se tiver campo a mais no banco ele ignora
             var convensoes = new ConventionProfile();
             convensoes.SetIgnoreExtraElementsConvention(new AlwaysIgnoreExtraElementsConvention());
@@ -52,7 +54,7 @@ namespace KarolCamp.UI.Web.Repositorio
         {
             //Todo: verificar que não esta excluido a foto
             var gfs = new MongoGridFS(database);
-            gfs.Delete(Query.EQ("_id", id));
+            gfs.Delete(Query.EQ("_id", new BsonObjectId(id)));
         }
 
         public string InserirArquivo(Stream arquivo, string nome, string contentType)
