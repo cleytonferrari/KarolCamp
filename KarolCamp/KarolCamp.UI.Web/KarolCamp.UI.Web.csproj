@@ -137,12 +137,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacao\SalaAplicacao.cs" />
     <Compile Include="Aplicacao\TrilhaAplicacao.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SalaController.cs" />
     <Compile Include="Controllers\TrilhaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +184,14 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\Trilha\Index.cshtml" />
     <Content Include="Views\Trilha\Cadastrar.cshtml" />
+    <Content Include="Views\Trilha\Editar.cshtml" />
+    <Content Include="Views\Trilha\Deletar.cshtml" />
+    <Content Include="Views\Trilha\Detalhe.cshtml" />
+    <Content Include="Views\Sala\Index.cshtml" />
+    <Content Include="Views\Sala\Cadastrar.cshtml" />
+    <Content Include="Views\Sala\Editar.cshtml" />
+    <Content Include="Views\Sala\Deletar.cshtml" />
+    <Content Include="Views\Sala\Detalhe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

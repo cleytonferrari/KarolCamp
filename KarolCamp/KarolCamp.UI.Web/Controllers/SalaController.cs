@@ -8,14 +8,14 @@ using KarolCamp.UI.Web.Models;
 
 namespace KarolCamp.UI.Web.Controllers
 {
-    public class TrilhaController : Controller
+    public class SalaController : Controller
     {
         //
-        // GET: /Trilha/
+        // GET: /Sala/
 
         public ActionResult Index()
         {
-            var app = new TrilhaAplicacao();
+            var app = new SalaAplicacao();
             return View(app.ListarTodos());
         }
 
@@ -25,67 +25,67 @@ namespace KarolCamp.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(Trilha trilha)
+        public ActionResult Cadastrar(Sala sala)
         {
             if (ModelState.IsValid)
             {
-                var app = new TrilhaAplicacao();
-                app.Salvar(trilha);
+                var app = new SalaAplicacao();
+                app.Salvar(sala);
                 return RedirectToAction("Index");
             }
-            return View(trilha);
+            return View(sala);
         }
 
         public ActionResult Editar(string id)
         {
-            var app = new TrilhaAplicacao();
-            var trilha = app.ListarPorId(id);
-            if (trilha == null)
+            var app = new SalaAplicacao();
+            var sala = app.ListarPorId(id);
+            if (sala == null)
                 return HttpNotFound();
 
-            return View(trilha);
+            return View(sala);
         }
 
         [HttpPost]
-        public ActionResult Editar(Trilha trilha)
+        public ActionResult Editar(Sala sala)
         {
             if (ModelState.IsValid)
             {
-                var app = new TrilhaAplicacao();
-                app.Salvar(trilha);
+                var app = new SalaAplicacao();
+                app.Salvar(sala);
                 return RedirectToAction("Index");
             }
-            return View(trilha);
+            return View(sala);
 
         }
 
         public ActionResult Deletar(string id)
         {
-            var app = new TrilhaAplicacao();
-            var trilha = app.ListarPorId(id);
-            if (trilha == null)
+            var app = new SalaAplicacao();
+            var sala = app.ListarPorId(id);
+            if (sala == null)
                 return HttpNotFound();
 
-            return View(trilha);
+            return View(sala);
         }
 
         [HttpPost, ActionName("Deletar")]
         public ActionResult ConfirmaDeletar(string id)
         {
-            //Todo: Não posso excluir trilha se estiver utilizando na palestra
-            var app = new TrilhaAplicacao();
+            //Todo: Não posso excluir sala se estiver utilizando na palestra
+            var app = new SalaAplicacao();
             app.Excluir(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Detalhe(string id)
         {
-            var app = new TrilhaAplicacao();
-            var trilha = app.ListarPorId(id);
-            if (trilha == null)
+            var app = new SalaAplicacao();
+            var sala = app.ListarPorId(id);
+            if (sala == null)
                 return HttpNotFound();
 
-            return View(trilha);
+            return View(sala);
         }
 
     }

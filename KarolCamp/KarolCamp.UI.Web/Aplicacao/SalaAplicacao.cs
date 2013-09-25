@@ -10,18 +10,18 @@ using MongoDB.Driver.Linq;
 
 namespace KarolCamp.UI.Web.Aplicacao
 {
-    public class TrilhaAplicacao
+    public class SalaAplicacao
     {
-        private readonly Contexto<Trilha> contexto;
+        private readonly Contexto<Sala> contexto;
 
-        public TrilhaAplicacao()
+        public SalaAplicacao()
         {
-            contexto = new Contexto<Trilha>();
+            contexto = new Contexto<Sala>();
         }
 
-        public void Salvar(Trilha trilha)
+        public void Salvar(Sala sala)
         {
-            contexto.Collection.Save(trilha);
+            contexto.Collection.Save(sala);
         }
 
         public void Excluir(string id)
@@ -29,12 +29,12 @@ namespace KarolCamp.UI.Web.Aplicacao
             contexto.Collection.Remove(Query.EQ("_id", id));
         }
 
-        public IEnumerable<Trilha> ListarTodos()
+        public IEnumerable<Sala> ListarTodos()
         {
             return contexto.Collection.AsQueryable();
         }
 
-        public Trilha ListarPorId(string id)
+        public Sala ListarPorId(string id)
         {
             return contexto.Collection.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
