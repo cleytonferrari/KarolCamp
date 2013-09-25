@@ -18,6 +18,8 @@ namespace KarolCamp.UI.Web.Repositorio
     public class Contexto<T>
     {
         private readonly MongoDatabase database;
+        private readonly MongoServer server;
+        private readonly MongoClient client;
 
         private static string GetMongoDbConnectionString()
         {
@@ -25,11 +27,13 @@ namespace KarolCamp.UI.Web.Repositorio
                    ConfigurationManager.ConnectionStrings["KarolCamp"].ConnectionString;
         }
 
+        
+
         public Contexto()
         {
             var url = new MongoUrl(GetMongoDbConnectionString());
-            var client = new MongoClient(url);
-            var server = client.GetServer();
+            client = new MongoClient(url);
+            server = client.GetServer();
             database = server.GetDatabase(url.DatabaseName);
             Collection = database.GetCollection<T>(typeof(T).Name.ToLower());
             DateTimeSerializationOptions.Defaults = new DateTimeSerializationOptions(DateTimeKind.Local, BsonType.Document);
@@ -45,21 +49,24 @@ namespace KarolCamp.UI.Web.Repositorio
         public Dictionary<string, string> BuscarArquivo(string id, ref MemoryStream retorno)
         {
             var fileInfo = database.GridFS.FindOne(Query.EQ("_id", new BsonObjectId(id)));
-            var gfs = new MongoGridFS(database);
+            var mySetting = new MongoGridFSSettings();
+            var gfs = new MongoGridFS(server, database.Name ,mySetting);
+
             gfs.Download(retorno, fileInfo);
             return new Dictionary<string, string> { { fileInfo.ContentType, fileInfo.Name } };
         }
 
         public void ExcluirArquivo(string id)
         {
-            //Todo: verificar que não esta excluido a foto
-            var gfs = new MongoGridFS(database);
+            var mySetting = new MongoGridFSSettings();
+            var gfs = new MongoGridFS(server, database.Name, mySetting);
             gfs.Delete(Query.EQ("_id", new BsonObjectId(id)));
         }
 
         public string InserirArquivo(Stream arquivo, string nome, string contentType)
         {
-            var gfs = new MongoGridFS(database);
+            var mySetting = new MongoGridFSSettings();
+            var gfs = new MongoGridFS(server, database.Name, mySetting);
             var fileInfo = gfs.Upload(arquivo, nome);
             gfs.SetContentType(fileInfo, contentType);
             return fileInfo.Id.AsObjectId.ToString();
