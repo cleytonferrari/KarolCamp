@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using KarolCamp.UI.Web.Models;
-using KarolCamp.UI.Web.Repositorio;
-using MongoDB.Bson;
+using System.Text;
+using System.Threading.Tasks;
+using KarolCamp.Dominio;
+using KarolCamp.Dominio.Interfaces;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 
-namespace KarolCamp.UI.Web.Aplicacao
+namespace KarolCamp.Repositorio.Mongo
 {
-    public class TrilhaAplicacao
+    public class RepositorioTrilha:IRepositorio<Trilha>
     {
         private readonly Contexto<Trilha> contexto;
 
-        public TrilhaAplicacao()
+        public RepositorioTrilha()
         {
             contexto = new Contexto<Trilha>();
         }
 
-        public void Salvar(Trilha trilha)
+        public void Salvar(Trilha entidade)
         {
-            contexto.Collection.Save(trilha);
+            contexto.Collection.Save(entidade);
         }
 
         public void Excluir(string id)
@@ -38,6 +38,5 @@ namespace KarolCamp.UI.Web.Aplicacao
         {
             return contexto.Collection.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
-
     }
 }

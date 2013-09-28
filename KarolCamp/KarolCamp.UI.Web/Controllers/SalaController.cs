@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using KarolCamp.UI.Web.Aplicacao;
-using KarolCamp.UI.Web.Models;
+﻿using System.Web.Mvc;
+using KarolCamp.Aplicacao;
+using KarolCamp.Dominio;
+
 
 namespace KarolCamp.UI.Web.Controllers
 {
@@ -15,7 +12,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Index()
         {
-            var app = new SalaAplicacao();
+            var app = Construtor.SalaAplicacaoMongo();
             return View(app.ListarTodos());
         }
 
@@ -29,7 +26,7 @@ namespace KarolCamp.UI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var app = new SalaAplicacao();
+                var app = Construtor.SalaAplicacaoMongo();
                 app.Salvar(sala);
                 return RedirectToAction("Index");
             }
@@ -38,7 +35,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Editar(string id)
         {
-            var app = new SalaAplicacao();
+            var app = Construtor.SalaAplicacaoMongo();
             var sala = app.ListarPorId(id);
             if (sala == null)
                 return HttpNotFound();
@@ -51,7 +48,7 @@ namespace KarolCamp.UI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var app = new SalaAplicacao();
+                var app = Construtor.SalaAplicacaoMongo();
                 app.Salvar(sala);
                 return RedirectToAction("Index");
             }
@@ -61,7 +58,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Deletar(string id)
         {
-            var app = new SalaAplicacao();
+            var app = Construtor.SalaAplicacaoMongo();
             var sala = app.ListarPorId(id);
             if (sala == null)
                 return HttpNotFound();
@@ -73,14 +70,14 @@ namespace KarolCamp.UI.Web.Controllers
         public ActionResult ConfirmaDeletar(string id)
         {
             //Todo: Não posso excluir sala se estiver utilizando na palestra
-            var app = new SalaAplicacao();
+            var app = Construtor.SalaAplicacaoMongo();
             app.Excluir(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Detalhe(string id)
         {
-            var app = new SalaAplicacao();
+            var app = Construtor.SalaAplicacaoMongo();
             var sala = app.ListarPorId(id);
             if (sala == null)
                 return HttpNotFound();

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using KarolCamp.UI.Web.Aplicacao;
-using KarolCamp.UI.Web.Models;
+using KarolCamp.Aplicacao;
+using KarolCamp.Dominio;
 
 namespace KarolCamp.UI.Web.Controllers
 {
@@ -12,7 +12,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Index()
         {
-            var app = new PalestranteAplicacao();
+            var app = Construtor.PalestranteAplicacaoMongo();
             return View(app.ListarTodos());
         }
 
@@ -26,7 +26,7 @@ namespace KarolCamp.UI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var app = new PalestranteAplicacao();
+                var app = Construtor.PalestranteAplicacaoMongo();
                 var arquivo = app.SalvarArquivo(foto.InputStream, foto.FileName, foto.ContentType);
                 palestrante.FotoId = arquivo;
                 app.Salvar(palestrante);
@@ -37,7 +37,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Editar(string id)
         {
-            var app = new PalestranteAplicacao();
+            var app = Construtor.PalestranteAplicacaoMongo();
             var palestrante = app.ListarPorId(id);
             if (palestrante == null)
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace KarolCamp.UI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var app = new PalestranteAplicacao();
+                var app = Construtor.PalestranteAplicacaoMongo();
                 if (foto != null)
                 {
                     app.ExcluirArquivo(palestrante.FotoId);
@@ -67,7 +67,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Deletar(string id)
         {
-            var app = new PalestranteAplicacao();
+            var app = Construtor.PalestranteAplicacaoMongo();
             var palestrante = app.ListarPorId(id);
             if (palestrante == null)
                 return HttpNotFound();
@@ -79,14 +79,14 @@ namespace KarolCamp.UI.Web.Controllers
         public ActionResult ConfirmaDeletar(string id)
         {
             //Todo: Não posso excluir palestrante se estiver utilizando na palestra
-            var app = new PalestranteAplicacao();
+            var app = Construtor.PalestranteAplicacaoMongo();
             app.Excluir(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Detalhe(string id)
         {
-            var app = new PalestranteAplicacao();
+            var app = Construtor.PalestranteAplicacaoMongo();
             var palestrante = app.ListarPorId(id);
             if (palestrante == null)
                 return HttpNotFound();

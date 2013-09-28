@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using KarolCamp.UI.Web.Models;
-using KarolCamp.UI.Web.Repositorio;
-using MongoDB.Bson;
+using KarolCamp.Dominio;
+using KarolCamp.Dominio.Interfaces;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 
-namespace KarolCamp.UI.Web.Aplicacao
+namespace KarolCamp.Repositorio.Mongo
 {
-    public class PalestraAplicacao
+    public class RepositorioPalestra:IRepositorio<Palestra>
     {
         private readonly Contexto<Palestra> contexto;
 
-        public PalestraAplicacao()
+        public RepositorioPalestra()
         {
             contexto = new Contexto<Palestra>();
         }
 
-        public void Salvar(Palestra palestra)
+        public void Salvar(Palestra entidade)
         {
-            contexto.Collection.Save(palestra);
+            contexto.Collection.Save(entidade);
         }
 
         public void Excluir(string id)
         {
-
             contexto.Collection.Remove(Query.EQ("_id", id));
         }
 

@@ -13,7 +13,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 
-namespace KarolCamp.UI.Web.Repositorio
+namespace KarolCamp.Repositorio.Mongo
 {
     public class Contexto<T>
     {

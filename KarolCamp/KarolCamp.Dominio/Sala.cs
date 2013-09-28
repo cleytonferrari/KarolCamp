@@ -1,4 +1,4 @@
-﻿namespace KarolCamp.UI.Web.Models
+﻿namespace KarolCamp.Dominio
 {
     public class Sala : Entidade
     {

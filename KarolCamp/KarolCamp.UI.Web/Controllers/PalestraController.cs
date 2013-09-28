@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using KarolCamp.UI.Web.Aplicacao;
-using KarolCamp.UI.Web.Models;
+﻿using System.Web.Mvc;
+using KarolCamp.Aplicacao;
+using KarolCamp.Dominio;
+
 
 namespace KarolCamp.UI.Web.Controllers
 {
@@ -16,16 +13,16 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Index()
         {
-            var app = new PalestraAplicacao();
+            var app = Construtor.PalestraAplicacaoMongo();
             return View(app.ListarTodos());
         }
 
         public ActionResult Cadastrar()
         {
 
-            ViewBag.ListaDeTrilhas = new SelectList(new TrilhaAplicacao().ListarTodos(), "Id", "Nome");
-            ViewBag.ListaDePalestrantes = new SelectList(new PalestranteAplicacao().ListarTodos(), "Id", "Nome");
-            ViewBag.ListaDeSalas = new SelectList(new SalaAplicacao().ListarTodos(), "Id", "Nome");
+            ViewBag.ListaDeTrilhas = new SelectList(Construtor.TrilhaAplicacaoMongo().ListarTodos(), "Id", "Nome");
+            ViewBag.ListaDePalestrantes = new SelectList(Construtor.PalestranteAplicacaoMongo().ListarTodos(), "Id", "Nome");
+            ViewBag.ListaDeSalas = new SelectList(Construtor.SalaAplicacaoMongo().ListarTodos(), "Id", "Nome");
             return View();
         }
 
@@ -34,10 +31,10 @@ namespace KarolCamp.UI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var app = new PalestraAplicacao();
-                palestra.Trilha = new TrilhaAplicacao().ListarPorId(palestra.Trilha.Id);
-                palestra.Palestrante = new PalestranteAplicacao().ListarPorId(palestra.Palestrante.Id);
-                palestra.Sala = new SalaAplicacao().ListarPorId(palestra.Sala.Id);
+                var app = Construtor.PalestraAplicacaoMongo();
+                palestra.Trilha = Construtor.TrilhaAplicacaoMongo().ListarPorId(palestra.Trilha.Id);
+                palestra.Palestrante = Construtor.PalestranteAplicacaoMongo().ListarPorId(palestra.Palestrante.Id);
+                palestra.Sala = Construtor.SalaAplicacaoMongo().ListarPorId(palestra.Sala.Id);
                 app.Salvar(palestra);
                 return RedirectToAction("Index");
             }
@@ -46,14 +43,14 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Editar(string id)
         {
-            var app = new PalestraAplicacao();
+            var app = Construtor.PalestraAplicacaoMongo();
             var palestra = app.ListarPorId(id);
             if (palestra == null)
                 return HttpNotFound();
 
-            ViewBag.ListaDeTrilhas = new SelectList(new TrilhaAplicacao().ListarTodos(), "Id", "Nome", palestra.Trilha.Id);
-            ViewBag.ListaDePalestrantes = new SelectList(new PalestranteAplicacao().ListarTodos(), "Id", "Nome", palestra.Palestrante.Id);
-            ViewBag.ListaDeSalas = new SelectList(new SalaAplicacao().ListarTodos(), "Id", "Nome", palestra.Sala.Id);
+            ViewBag.ListaDeTrilhas = new SelectList(Construtor.TrilhaAplicacaoMongo().ListarTodos(), "Id", "Nome", palestra.Trilha.Id);
+            ViewBag.ListaDePalestrantes = new SelectList(Construtor.PalestranteAplicacaoMongo().ListarTodos(), "Id", "Nome", palestra.Palestrante.Id);
+            ViewBag.ListaDeSalas = new SelectList(Construtor.SalaAplicacaoMongo().ListarTodos(), "Id", "Nome", palestra.Sala.Id);
 
             return View(palestra);
         }
@@ -63,10 +60,10 @@ namespace KarolCamp.UI.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var app = new PalestraAplicacao();
-                palestra.Trilha = new TrilhaAplicacao().ListarPorId(palestra.Trilha.Id);
-                palestra.Palestrante = new PalestranteAplicacao().ListarPorId(palestra.Palestrante.Id);
-                palestra.Sala = new SalaAplicacao().ListarPorId(palestra.Sala.Id);
+                var app = Construtor.PalestraAplicacaoMongo();
+                palestra.Trilha = Construtor.TrilhaAplicacaoMongo().ListarPorId(palestra.Trilha.Id);
+                palestra.Palestrante = Construtor.PalestranteAplicacaoMongo().ListarPorId(palestra.Palestrante.Id);
+                palestra.Sala = Construtor.SalaAplicacaoMongo().ListarPorId(palestra.Sala.Id);
                 app.Salvar(palestra);
                 return RedirectToAction("Index");
             }
@@ -76,7 +73,7 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Deletar(string id)
         {
-            var app = new PalestraAplicacao();
+            var app = Construtor.PalestraAplicacaoMongo();
             var palestra = app.ListarPorId(id);
             if (palestra == null)
                 return HttpNotFound();
@@ -88,14 +85,14 @@ namespace KarolCamp.UI.Web.Controllers
         public ActionResult ConfirmaDeletar(string id)
         {
             //Todo: Não posso excluir palestra se estiver utilizando na palestra
-            var app = new PalestraAplicacao();
+            var app = Construtor.PalestraAplicacaoMongo();
             app.Excluir(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Detalhe(string id)
         {
-            var app = new PalestraAplicacao();
+            var app = Construtor.PalestraAplicacaoMongo();
             var palestra = app.ListarPorId(id);
             if (palestra == null)
                 return HttpNotFound();

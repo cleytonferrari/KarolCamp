@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using KarolCamp.UI.Web.Aplicacao;
+using KarolCamp.Aplicacao;
 
 namespace KarolCamp.UI.Web.Controllers
 {
@@ -22,7 +22,7 @@ namespace KarolCamp.UI.Web.Controllers
         {
             var ms = new MemoryStream();
 
-            var arquivo = new PalestranteAplicacao().RetornaArquivo(id, ref ms);
+            var arquivo = Construtor.PalestranteAplicacaoMongo().RetornaArquivo(id, ref ms);
 
             var contentType = arquivo.FirstOrDefault().Key;
             return new FileContentResult(ms.ToArray(), contentType);

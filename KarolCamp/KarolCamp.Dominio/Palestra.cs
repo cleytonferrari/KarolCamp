@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KarolCamp.UI.Web.Models
+namespace KarolCamp.Dominio
 {
     public class Palestra : Entidade
     {
