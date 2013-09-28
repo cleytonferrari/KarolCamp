@@ -137,6 +137,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacao\PalestraAplicacao.cs" />
     <Compile Include="Aplicacao\PalestranteAplicacao.cs" />
     <Compile Include="Aplicacao\SalaAplicacao.cs" />
     <Compile Include="Aplicacao\TrilhaAplicacao.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\PalestraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PalestranteController.cs" />
     <Compile Include="Controllers\SalaController.cs" />
@@ -199,6 +201,11 @@
     <Content Include="Views\Palestrante\Deletar.cshtml" />
     <Content Include="Views\Palestrante\Detalhe.cshtml" />
     <Content Include="Views\Palestrante\Index.cshtml" />
+    <Content Include="Views\Palestra\Index.cshtml" />
+    <Content Include="Views\Palestra\Cadastrar.cshtml" />
+    <Content Include="Views\Palestra\Editar.cshtml" />
+    <Content Include="Views\Palestra\Deletar.cshtml" />
+    <Content Include="Views\Palestra\Detalhe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

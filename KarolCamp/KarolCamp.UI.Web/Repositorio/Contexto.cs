@@ -27,7 +27,7 @@ namespace KarolCamp.UI.Web.Repositorio
                    ConfigurationManager.ConnectionStrings["KarolCamp"].ConnectionString;
         }
 
-        
+
 
         public Contexto()
         {
@@ -36,21 +36,21 @@ namespace KarolCamp.UI.Web.Repositorio
             server = client.GetServer();
             database = server.GetDatabase(url.DatabaseName);
             Collection = database.GetCollection<T>(typeof(T).Name.ToLower());
+            
             DateTimeSerializationOptions.Defaults = new DateTimeSerializationOptions(DateTimeKind.Local, BsonType.Document);
+           
+            var conventions = new ConvensoesMongo();
+            ConventionRegistry.Register("Convensoes", conventions, t => true);
 
-            //Ajuda no migration, se tiver campo a mais no banco ele ignora
-            var convensoes = new ConventionProfile();
-            convensoes.SetIgnoreExtraElementsConvention(new AlwaysIgnoreExtraElementsConvention());
-            BsonClassMap.RegisterConventions(convensoes, (type) => true);
         }
 
         public MongoCollection<T> Collection { get; private set; }
 
         public Dictionary<string, string> BuscarArquivo(string id, ref MemoryStream retorno)
         {
-            var fileInfo = database.GridFS.FindOne(Query.EQ("_id", new BsonObjectId(id)));
+            var fileInfo = database.GridFS.FindOne(Query.EQ("_id", new BsonObjectId(new ObjectId(id))));
             var mySetting = new MongoGridFSSettings();
-            var gfs = new MongoGridFS(server, database.Name ,mySetting);
+            var gfs = new MongoGridFS(server, database.Name, mySetting);
 
             gfs.Download(retorno, fileInfo);
             return new Dictionary<string, string> { { fileInfo.ContentType, fileInfo.Name } };
@@ -60,7 +60,7 @@ namespace KarolCamp.UI.Web.Repositorio
         {
             var mySetting = new MongoGridFSSettings();
             var gfs = new MongoGridFS(server, database.Name, mySetting);
-            gfs.Delete(Query.EQ("_id", new BsonObjectId(id)));
+            gfs.Delete(Query.EQ("_id", new BsonObjectId(new ObjectId(id))));
         }
 
         public string InserirArquivo(Stream arquivo, string nome, string contentType)
@@ -70,6 +70,20 @@ namespace KarolCamp.UI.Web.Repositorio
             var fileInfo = gfs.Upload(arquivo, nome);
             gfs.SetContentType(fileInfo, contentType);
             return fileInfo.Id.AsObjectId.ToString();
+        }
+    }
+
+    public class ConvensoesMongo : IConventionPack
+    {
+        public IEnumerable<IConvention> Conventions
+        {
+            get
+            {
+                return new List<IConvention>
+                             {
+                                 new IgnoreExtraElementsConvention(true)
+                             };
+            }
         }
     }
 }

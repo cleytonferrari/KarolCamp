@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KarolCamp.UI.Web.Models.Palestra>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar", "Cadastrar")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trilha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Horario)
+        </th>
+        <th>
+           
+        </th>
+
+    
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nivel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trilha.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Horario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Editar", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Detalhe", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Deletar", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

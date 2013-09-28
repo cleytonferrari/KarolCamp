@@ -1,0 +1,68 @@
+﻿@model KarolCamp.UI.Web.Models.Palestra
+
+@{
+    ViewBag.Title = "Detalhe";
+}
+
+<h2>Detalhe</h2>
+
+<fieldset>
+    <legend>Palestra</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Titulo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Titulo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Codigo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Codigo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nivel)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nivel)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Horario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Horario)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Trilha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Trilha.Nome)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Palestrante)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Palestrante.Nome)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sala)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sala.Nome)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Editar", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
