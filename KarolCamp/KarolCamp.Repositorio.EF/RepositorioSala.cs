@@ -16,15 +16,16 @@ namespace KarolCamp.Repositorio.EF
 
         public void Salvar(Sala entidade)
         {
-            var trilhaBanco = contexto.Salas.FirstOrDefault(x => x.Id == entidade.Id);
+            var salaBanco = contexto.Salas.FirstOrDefault(x => x.Id == entidade.Id);
 
-            if (trilhaBanco == null)
+            if (salaBanco == null)
             {
                 contexto.Salas.Add(entidade);
             }
             else
             {
-                trilhaBanco.Nome = entidade.Nome;
+                salaBanco = new Sala();
+                salaBanco.Nome = entidade.Nome;
             }
 
             contexto.SaveChanges();

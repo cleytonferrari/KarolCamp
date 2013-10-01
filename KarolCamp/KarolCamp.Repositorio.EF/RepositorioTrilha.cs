@@ -24,6 +24,7 @@ namespace KarolCamp.Repositorio.EF
             }
             else
             {
+                trilhaBanco = new Trilha();
                 trilhaBanco.Nome = entidade.Nome;
             }
 

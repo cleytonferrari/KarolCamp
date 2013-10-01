@@ -24,6 +24,7 @@ namespace KarolCamp.Repositorio.EF
             }
             else
             {
+                palestranteBanco = new Palestrante();
                 palestranteBanco.Nome = entidade.Nome;
                 palestranteBanco.Bio = entidade.Bio;
                 palestranteBanco.Twitter = entidade.Twitter;

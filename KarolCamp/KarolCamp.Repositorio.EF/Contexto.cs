@@ -4,7 +4,7 @@ using KarolCamp.Dominio;
 
 namespace KarolCamp.Repositorio.EF
 {
-    public class Contexto:DbContext
+    public class Contexto : DbContext
     {
         public Contexto()
             : base("KarolCampEF")
