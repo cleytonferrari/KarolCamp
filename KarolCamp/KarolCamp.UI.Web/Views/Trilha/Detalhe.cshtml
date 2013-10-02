@@ -4,19 +4,20 @@
     ViewBag.Title = "Detalhe";
 }
 
-<h2>Detalhe</h2>
+<div class="page-header">
+    <h1>Trilha <small>organize as trilhas de suas palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Nova trilha</a>
+</div>
 
 <fieldset>
-    <legend>Trilha</legend>
+    <legend>Detalhes da trilha</legend>
+    <div class="form-group">
+        <strong>Nome: </strong> @Html.DisplayFor(model => model.Nome)
+    </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nome)
-    </div>
 </fieldset>
+<hr />
 <p>
-    @Html.ActionLink("Edit", "Editar", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Editar", new { id = Model.Id })" class="btn btn-sm btn-info">Editar</a> 
+    <a href="@Url.Action("Index")"> Voltar</a>
 </p>

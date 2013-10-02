@@ -3,33 +3,43 @@
 @{
     ViewBag.Title = "";
 }
+<div class="page-header">
+    <h1>Palestrantes <small>Listagem dos palestrantes</small></h1>
+</div>
+
+<div class="list-group">
+    <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading">List group item heading</h4>
+        <p class="list-group-item-text">Vários dados deles vão aqui.</p>
+    </a>
+</div>
+
+<p>
+    @Html.ActionLink("Cadastrar", "Cadastrar")
+</p>
 
 
-    <p>
-        @Html.ActionLink("Cadastrar", "Cadastrar")
-    </p>
-    <table>
-        <tr>
-            <th>
-                
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Twitter)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bio)
-            </th>
-            
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
+<table class="table table-striped">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Twitter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bio)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                <img src="/Home/Arquivo/?id=@item.FotoId" width="60px"/>
+                <img src="/Home/Arquivo/?id=@item.FotoId" width="60px" class="img-thumbnail"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
@@ -40,14 +50,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Bio)
             </td>
-            
+
             <td>
-                @Html.ActionLink("Edit", "Editar", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Detalhe", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Deletar", new { id=item.Id })
+                <a href="@Url.Action("Editar", new { id = item.Id })" class="btn btn-default btn-sm">Editar</a>
+                <a href="@Url.Action("Detalhe", new { id = item.Id })" class="btn btn-default btn-sm">Detalhe</a>
+                <a href="@Url.Action("Deletar", new { id = item.Id })" class="btn btn-primary btn-sm btn-danger">Deletar</a>
             </td>
         </tr>
     }
-    
-    </table>
+
+</table>
 
