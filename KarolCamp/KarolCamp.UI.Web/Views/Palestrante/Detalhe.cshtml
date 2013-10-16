@@ -1,39 +1,23 @@
 ﻿@model KarolCamp.Dominio.Palestrante
 
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Palestrante - Detalhe";
 }
-
-    <fieldset>
-        <legend>Palestrante</legend>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Nome)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Nome)
-        </div>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Twitter)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Twitter)
-        </div>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Bio)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Bio)
-        </div>
-    
-        <div class="display-label">
-             <img src="/Home/Arquivo/?id=@Model.FotoId" width="120px"/>
-        </div>
-        
-    </fieldset>
-    <p>
-        @Html.ActionLink("Editar", "Editar", new { id=Model.Id }) |
-        @Html.ActionLink("Cancelar", "Index")
-    </p>
+<div class="page-header">
+    <h1>Palestrantes <small>organize os palestrantes de suas palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Novo palestrante</a>
+</div>
+<fieldset>
+    <legend>Palestrante</legend>
+    <div class="form-group">
+        <p><strong>Nome: </strong> @Html.DisplayFor(model => model.Nome)</p>
+        <p><strong>Twitter: </strong> @Html.DisplayFor(model => model.Twitter)</p>
+        <p><strong>Bio: </strong> @Html.DisplayFor(model => model.Bio)</p>
+        <p><img src="/Home/Arquivo/?id=@Model.FotoId" width="120px" class="img-thumbnail" /></p>
+    </div>
+</fieldset>
+<hr />
+<p>
+    <a href="@Url.Action("Editar", new { id = Model.Id })" class="btn btn-sm btn-info">Editar</a>
+    <a href="@Url.Action("Index")"> Voltar</a>
+</p>

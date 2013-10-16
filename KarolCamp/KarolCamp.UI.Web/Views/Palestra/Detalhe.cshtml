@@ -1,68 +1,29 @@
 ﻿@model KarolCamp.Dominio.Palestra
 
 @{
-    ViewBag.Title = "Detalhe";
+    ViewBag.Title = "Palestra - Detalhe";
 }
 
-<h2>Detalhe</h2>
+<div class="page-header">
+    <h1>Palestra <small>organize suas palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Nova palestra</a>
+</div>
 
 <fieldset>
     <legend>Palestra</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Titulo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Titulo)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Codigo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Codigo)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Descricao)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Descricao)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nivel)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nivel)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Horario)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Horario)
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Trilha)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Trilha.Nome)
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Palestrante)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Palestrante.Nome)
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Sala)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Sala.Nome)
+    <div class="form-group">
+        <p><strong>Título: </strong> @Html.DisplayFor(model => model.Titulo)</p>
+        <p><strong>Código: </strong> @Html.DisplayFor(model => model.Codigo)</p>
+        <p><strong>Descrição: </strong> @Html.DisplayFor(model => model.Descricao)</p>
+        <p><strong>Nível: </strong> @Html.DisplayFor(model => model.Nivel)</p>
+        <p><strong>Horário: </strong> @Html.DisplayFor(model => model.Horario)</p>
+        <p><strong>Trilha: </strong> @Html.DisplayFor(model => model.Trilha.Nome)</p>
+        <p><strong>Palestrante: </strong> @Html.DisplayFor(model => model.Palestrante.Nome)</p>
+        <p><strong>Sala: </strong> @Html.DisplayFor(model => model.Sala.Nome)</p>
     </div>
 </fieldset>
+<hr />
 <p>
-    @Html.ActionLink("Edit", "Editar", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Editar", new { id = Model.Id })" class="btn btn-sm btn-info">Editar</a>
+    <a href="@Url.Action("Index")"> Voltar</a>
 </p>
