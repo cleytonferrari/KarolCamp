@@ -4,60 +4,47 @@
     ViewBag.Title = "";
 }
 <div class="page-header">
-    <h1>Palestrantes <small>Listagem dos palestrantes</small></h1>
+    <h1>Palestrantes <small>organize os palestrantes de suas palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Novo palestrante</a>
 </div>
 
-<div class="list-group">
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Vários dados deles vão aqui.</p>
-    </a>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Trilhas cadastradas
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>Nome</th>
+                            <th>Twitter</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var x = 0;}
+                        @foreach (var item in Model)
+                        {
+                            x++;
+                            <tr>
+                                <td style="width: 50px">@x</td>
+                                <td><img src="/Home/Arquivo/?id=@item.FotoId" width="60px" class="img-thumbnail" /></td>
+                                <td><a href="@Url.Action("Detalhe", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Nome)</a></td>
+                                <td>@Html.DisplayFor(modelItem => item.Twitter)</td>
+                                <td style="width: 100px">
+                                    <a href="@Url.Action("Editar", new { id = item.Id })" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="@Url.Action("Deletar", new { id = item.Id })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-
-<p>
-    @Html.ActionLink("Cadastrar", "Cadastrar")
-</p>
-
-
-<table class="table table-striped">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Twitter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bio)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="/Home/Arquivo/?id=@item.FotoId" width="60px" class="img-thumbnail"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Twitter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bio)
-            </td>
-
-            <td>
-                <a href="@Url.Action("Editar", new { id = item.Id })" class="btn btn-default btn-sm">Editar</a>
-                <a href="@Url.Action("Detalhe", new { id = item.Id })" class="btn btn-default btn-sm">Detalhe</a>
-                <a href="@Url.Action("Deletar", new { id = item.Id })" class="btn btn-primary btn-sm btn-danger">Deletar</a>
-            </td>
-        </tr>
-    }
-
-</table>
-
