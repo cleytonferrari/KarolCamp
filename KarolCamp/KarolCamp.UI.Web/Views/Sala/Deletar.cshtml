@@ -4,23 +4,25 @@
     ViewBag.Title = "Deletar";
 }
 
-<h2>Deletar</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<div class="page-header">
+    <h1>Sala <small>organize as salas onde será ministradas as palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Nova sala</a>
+</div>
+<div class="alert alert-danger">
+    <strong>Atenção!</strong> Deseja realmente excluir este registro?
+</div>
 <fieldset>
-    <legend>Sala</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nome)
+    <legend>Excluir sala</legend>
+    <div class="form-group">
+        <strong>Nome: </strong> @Html.DisplayFor(model => model.Nome)
     </div>
 </fieldset>
-@using (Html.BeginForm()) {
+<hr />
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Excluir" class="btn btn-sm btn-info" />
+        @Html.ActionLink("Cancelar", "Index")
     </p>
 }

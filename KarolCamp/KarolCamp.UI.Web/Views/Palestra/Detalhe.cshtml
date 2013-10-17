@@ -10,15 +10,15 @@
 </div>
 
 <fieldset>
-    <legend>Palestra</legend>
+    <legend>Detalhes da Palestra</legend>
     <div class="form-group">
-        <p><strong>Título: </strong> @Html.DisplayFor(model => model.Titulo)</p>
         <p><strong>Código: </strong> @Html.DisplayFor(model => model.Codigo)</p>
-        <p><strong>Descrição: </strong> @Html.DisplayFor(model => model.Descricao)</p>
         <p><strong>Nível: </strong> @Html.DisplayFor(model => model.Nivel)</p>
-        <p><strong>Horário: </strong> @Html.DisplayFor(model => model.Horario)</p>
+        <p><strong>Título: </strong> @Html.DisplayFor(model => model.Titulo)</p>
+        <p><strong>Descrição: </strong> @Html.DisplayFor(model => model.Descricao)</p>
         <p><strong>Trilha: </strong> @Html.DisplayFor(model => model.Trilha.Nome)</p>
         <p><strong>Palestrante: </strong> @Html.DisplayFor(model => model.Palestrante.Nome)</p>
+        <p><strong>Horário: </strong> @Html.DisplayFor(model => model.Horario)</p>
         <p><strong>Sala: </strong> @Html.DisplayFor(model => model.Sala.Nome)</p>
     </div>
 </fieldset>
