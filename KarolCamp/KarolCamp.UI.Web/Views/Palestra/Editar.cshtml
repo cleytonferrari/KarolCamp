@@ -4,7 +4,10 @@
     ViewBag.Title = "Editar";
 }
 
-<h2>Editar</h2>
+<div class="page-header">
+    <h1>Palestra <small>organize suas palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Nova palestra</a>
+</div>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -33,7 +36,7 @@
             @Html.LabelFor(model => model.Descricao)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Descricao)
+            @Html.TextAreaFor(model => model.Descricao)
             @Html.ValidationMessageFor(model => model.Descricao)
         </div>
 
@@ -78,16 +81,10 @@
 
         @Html.HiddenFor(model => model.Id)
 
+        <hr />
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Salvar" class="btn btn-sm btn-info" />
+            <a href="@Url.Action("Index")"> Cancelar</a>
         </p>
     </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

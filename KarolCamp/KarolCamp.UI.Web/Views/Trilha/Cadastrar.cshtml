@@ -4,14 +4,16 @@
     ViewBag.Title = "Cadastrar";
 }
 
-<h2>Cadastrar</h2>
+<div class="page-header">
+    <h1>Trilha <small>organize as trilhas de suas palestras</small></h1>
+</div>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Trilha</legend>
+        <legend>Nova Trilha</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Nome)
@@ -21,16 +23,10 @@
             @Html.ValidationMessageFor(model => model.Nome)
         </div>
 
+        <hr />
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Salvar" class="btn btn-sm btn-info" />
+            <a href="@Url.Action("Index")"> Cancelar</a>
         </p>
     </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
