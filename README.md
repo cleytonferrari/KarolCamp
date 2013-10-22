@@ -18,7 +18,9 @@ Controla:
 ## Branch ##
 
 ### codigoRefatoradoNivel2 ###
-	Nesta branch a solution foi dividida em vários projetos:
+	Basicamente nesta branch foi criado no sistema a possibilidade da utilização do banco SQL Server, ou MongoDb.
+	
+	A Solution continua separada em vários projetos:
 	1. KarolCamp.Aplicacao
 		Neste projeto fica toda a logica do negocio e abstração da manipulação dos dados (CRUD)
 	2. KarolCamp.Dominio
