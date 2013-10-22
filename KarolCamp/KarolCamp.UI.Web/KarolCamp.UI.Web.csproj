@@ -139,6 +139,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\KO\Controllers\HomeController.cs" />
+    <Compile Include="Areas\KO\Controllers\PalestraController.cs" />
+    <Compile Include="Areas\KO\Controllers\PalestranteController.cs" />
+    <Compile Include="Areas\KO\Controllers\SalaController.cs" />
+    <Compile Include="Areas\KO\Controllers\TrilhaController.cs" />
+    <Compile Include="Areas\KO\KOAreaRegistration.cs" />
     <Compile Include="Controllers\PalestraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PalestranteController.cs" />
@@ -160,6 +166,14 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\KO\Views\Web.config" />
+    <Content Include="Areas\KO\Views\Home\Index.cshtml" />
+    <Content Include="Areas\KO\Views\Palestra\Index.cshtml" />
+    <Content Include="Areas\KO\Views\Palestrante\Index.cshtml" />
+    <Content Include="Areas\KO\Views\Sala\Index.cshtml" />
+    <Content Include="Areas\KO\Views\Trilha\Index.cshtml" />
+    <Content Include="Areas\KO\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\KO\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -207,6 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\KO\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
