@@ -21,7 +21,21 @@ Controla:
 ### Master ###
 	Esta é a branch de desenvolvimento, utilizado na construção das outras branch
 =======
-### codigoSemRefatoracao ###
-	Nesta branch o codigo é gerado em um unico projeto ASP .Net MVC, criado a conexão com banco e todo os cadastrados estão funcionando.
+### codigoRefatoradoNivel2 ###
+	Basicamente nesta branch foi criado no sistema a possibilidade da utilização do banco SQL Server, ou MongoDb.
+	
+	A Solution continua separada em vários projetos:
+	1. KarolCamp.Aplicacao
+		Neste projeto fica toda a logica do negocio e abstração da manipulação dos dados (CRUD)
+	2. KarolCamp.Dominio
+		Neste projeto fica as classes que representa o dominio (POCO)
+	3. KarolCamp.Repositorio.EF
+		Neste projeto fica o repositorio do Entity Framework, que abstrai o nosso acessao ao SQL Server
+	4. KarolCamp.Repositorio.Mongo
+		Neste projeto fica o repositorio do MongoDb, que abstrari o acesso ao MongoDb
+	5. KarolCamp.UI.Web
+		Neste projeto fica os ASP .Net MVC que representa nossa interface gráfica
+		
 	** Banco utilizado MongoDb
->>>>>>> codigoSemRefatoracao
+	** Banco utilizado SQL Server com EF
+>>>>>>> codigoRefatoradoNivel2
