@@ -134,6 +134,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\PalestrasController.cs" />
+    <Compile Include="Api\PalestrantesController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -175,6 +177,7 @@
     <Content Include="Areas\KO\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\KO\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\AppKO\HomeViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
