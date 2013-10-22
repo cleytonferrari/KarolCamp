@@ -11,16 +11,12 @@ Controla:
 
 ** Para cada tela foi criado uma lista, cadastro, detalhes e edição.
 
+	Este código foi separado em varias branchs, cada branch esta uma etapa do processo de fatoração do código. 
+	Veja todas as branchs https://github.com/cleytonferrari/KarolCamp/branches
+
+
 ## Branch ##
 
 ### codigoSemRefatoracao ###
 	Nesta branch o codigo é gerado em um unico projeto ASP .Net MVC, criado a conexão com banco e todo os cadastrados estão funcionando.
 	** Banco utilizado MongoDb
-
-### codigoRefatoradoNivel1 ###
-
-
-### codigoRefatoradoNivel2 ###
-
-
-### codigoRefatoradoNivel3 ###
