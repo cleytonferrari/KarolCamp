@@ -1,11 +1,11 @@
-﻿@{
+﻿@using KarolCamp.Dominio
+@{
     ViewBag.Title = "Index";
 }
 
 <div class="jumbotron">
     <h1>Karol Camp</h1>
-    <p>Veja a lista completa das nossas palestras e participe!</p>
-    <p><a class="btn btn-primary">Saber mais »</a></p>
+    <p>Sistema para gerenciar palestras, trilhas, salas e muito mais!</p>
 </div>
 
 <div class="row">
@@ -14,54 +14,38 @@
             <div class="panel-heading">
                 Palestrantes
             </div>
-
-         
-
             <p class="panel-body">
-                <img src="http://placehold.it/150x150" class="img-thumbnail">
-                <img src="http://placehold.it/150x150" class="img-thumbnail">
-                <img src="http://placehold.it/150x150" class="img-thumbnail">
-                <img src="http://placehold.it/150x150" class="img-thumbnail">
-                <img src="http://placehold.it/150x150" class="img-thumbnail">
+                @foreach (var palestrante in (List<Palestrante>)ViewBag.Palestrantes)
+                {
+                    <a href="@Url.Action("Detalhe","Palestrante", new { id = palestrante.Id })">
+                        <img src="/Home/Arquivo/?id=@palestrante.FotoId" width="150px" class="img-thumbnail" title="@palestrante.Nome" alt="@palestrante.Nome">
+                    </a>
+                }
+
             </p>
-
-
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <small>Trilha</small> <strong>Windows Phone</strong>
-            </div>
-            <div class="panel-body">This is a panel</div>
-            <div class="panel-footer">
-                This is a footer
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                This is a header
-            </div>
-            <div class="panel-body">This is a panel</div>
-            <div class="panel-footer">
-                This is a footer
+    @foreach (var palestra in (List<Palestra>)ViewBag.Palestras)
+    {
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <small>Palestra</small> <strong>@palestra.Titulo</strong>
+                </div>
+                <div class="panel-body">
+                    @palestra.Descricao
+                    <br/><br />
+                    <em>Nível: </em>@palestra.Nivel<br />
+                    <em>Sala: </em>@palestra.Sala.Nome<br/>
+                    <em>Trilha: </em>@palestra.Trilha.Nome
+                </div>
+                <div class="panel-footer">
+                    @palestra.Palestrante.Nome
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                This is a header
-            </div>
-            <div class="panel-body">This is a panel</div>
-            <div class="panel-footer">
-                This is a footer
-            </div>
-        </div>
-    </div>
+    }
 </div>

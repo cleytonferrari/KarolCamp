@@ -12,6 +12,8 @@ namespace KarolCamp.UI.Web.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Palestrantes = Construtor.PalestranteAplicacaoMongo().ListarTodos().ToList();
+            ViewBag.Palestras = Construtor.PalestraAplicacaoMongo().ListarTodos().ToList();
             return View();
         }
 
