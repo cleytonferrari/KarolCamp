@@ -15,11 +15,13 @@
             data: JSON.stringify(trilha),
             contentType: 'application/json',
             statusCode: {
-                200: function (retorno) {
+                200: function (msg) { console.log(msg); },
+                
+                201: function (retorno) {
                     console.log(retorno);
-                    //Window.location('KO/Trilha/');
+                    window.location.href = '/KO/Trilha';
                 },
-
+                
                 403: function (msg) {console.log(msg);},
 
                 400: function (msg) {console.log(msg);},

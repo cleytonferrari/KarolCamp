@@ -4,8 +4,9 @@
     self.nome = ko.observable();
 
     self.construtor = function () {
-        //pegar o id da URL
-        $.getJSON('/api/trilhas', { id: 'af459cfadace49df9b64d5caab6e1615' }, function (retorno) {
+        var id = $(location).attr('href').split("/").pop();
+        
+        $.getJSON('/api/trilhas', { id: id }, function (retorno) {
             self.id(retorno.Id);
             self.nome(retorno.Nome);
         });

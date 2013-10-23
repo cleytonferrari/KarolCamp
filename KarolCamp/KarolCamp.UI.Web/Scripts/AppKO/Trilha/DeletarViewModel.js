@@ -11,7 +11,7 @@
             statusCode: {
                 200: function (retorno) {
                     console.log(retorno);
-                    //Window.location('KO/Trilha/');
+                    window.location.href = '/KO/Trilha';
                 },
 
                 403: function (msg) {console.log(msg);},
@@ -23,13 +23,12 @@
                 500: function (msg) {console.log(msg);}
             }
         });
-        //redirecionar para index
     };
 
 
     self.construtor = function () {
-        //pegar o id da URL
-        $.getJSON('/api/trilhas', { id: 'af459cfadace49df9b64d5caab6e1615' }, function (retorno) {
+        var id = $(location).attr('href').split("/").pop();
+        $.getJSON('/api/trilhas', { id: id }, function (retorno) {
             self.id(retorno.Id);
             self.nome(retorno.Nome);
         });
