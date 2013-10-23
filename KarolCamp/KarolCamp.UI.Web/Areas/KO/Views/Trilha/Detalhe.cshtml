@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Trilha - Detalhe";
+}
+<script src="~/Scripts/AppKO/Trilha/DetalheViewModel.js"></script>
+<div class="page-header">
+    <h1>Trilha <small>organize as trilhas de suas palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Nova trilha</a>
+</div>
+
+<fieldset>
+    <legend>Detalhes da trilha</legend>
+    <div class="form-group">
+        <p><strong>Nome: </strong> <span data-bind="text: nome"></span></p>
+    </div>
+
+</fieldset>
+<hr />
+<p>
+    <a data-bind="attr: { href: '/KO/Trilha/Editar/' + id() }" class="btn btn-sm btn-info">Editar</a>
+    <a href="@Url.Action("Index")"> Voltar</a>
+</p>
