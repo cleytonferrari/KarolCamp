@@ -19,7 +19,7 @@
         };
 
         $.ajax({
-            url: '/api/trilhas',
+            url: '/api/trilhas/'+self.id(),
             type: "PUT",
             data: JSON.stringify(trilha),
             contentType: 'application/json',
