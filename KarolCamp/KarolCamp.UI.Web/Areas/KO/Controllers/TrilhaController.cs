@@ -16,5 +16,27 @@ namespace KarolCamp.UI.Web.Areas.KO.Controllers
             return View();
         }
 
+        public ActionResult Cadastrar()
+        {
+            return View();
+        }
+
+        public ActionResult Editar(string id)
+        {
+            return View();
+        }
+
+        
+        public ActionResult Deletar(string id)
+        {
+            return View();
+        }
+
+        
+        public ActionResult Detalhe(string id)
+        {
+            return View();
+        }
+
     }
 }

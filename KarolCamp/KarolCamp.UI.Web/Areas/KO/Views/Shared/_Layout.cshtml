@@ -9,32 +9,49 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/knockout")
     @Scripts.Render("~/bundles/bootstrap")
+    
+    <script type="text/javascript">
+        jQuery.ajaxSetup({
+            beforeSend: function () {
+                $('#loader').fadeIn();
+            },
+            complete: function () {
+                $('#loader').fadeOut('fast');
+            },
+            success: function () {
+                $('#loader').fadeOut('fast');
+            }
+        });
+    </script>
 </head>
-<body>
-    <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
+    <body>
+        <div id="loader" class="alert alert-info" style="position: absolute; top: 5px; left: 50%; z-index: 10000; display: none; height: 44px;">
+            <h4>Aguarde...</h4>
+        </div>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
 
-                <a class="navbar-brand" href="~/KO">Karol Camp - KO</a>
-            </div>
+                    <a class="navbar-brand" href="~/KO">Karol Camp - KO</a>
+                </div>
 
-            <div class="collapse navbar-collapse header-collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Trilha", "Index", "Trilha")</li>
-                    <li>@Html.ActionLink("Sala", "Index", "Sala")</li>
-                    <li>@Html.ActionLink("Palestrante", "Index", "Palestrante")</li>
-                    <li>@Html.ActionLink("Palestra", "Index", "Palestra")</li>
-                </ul>
-                <p class="navbar-text navbar-right">Código fonte em <a href="https://github.com/cleytonferrari/karolcamp" target="_blank">GitHub</a></p>
+                <div class="collapse navbar-collapse header-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Trilha", "Index", "Trilha")</li>
+                        <li>@Html.ActionLink("Sala", "Index", "Sala")</li>
+                        <li>@Html.ActionLink("Palestrante", "Index", "Palestrante")</li>
+                        <li>@Html.ActionLink("Palestra", "Index", "Palestra")</li>
+                    </ul>
+                    <p class="navbar-text navbar-right">Código fonte em <a href="https://github.com/cleytonferrari/karolcamp" target="_blank">GitHub</a></p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        @RenderBody()
-    </div>
+        <div class="container">
+            @RenderBody()
+        </div>
 
     
-    @RenderSection("scripts", required: false)
-</body>
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
