@@ -134,6 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\TrilhasController.cs" />
     <Compile Include="Api\PalestrasController.cs" />
     <Compile Include="Api\PalestrantesController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
@@ -176,8 +177,13 @@
     <Content Include="Areas\KO\Views\Trilha\Index.cshtml" />
     <Content Include="Areas\KO\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\KO\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\KO\Views\Trilha\Cadastrar.cshtml" />
+    <Content Include="Areas\KO\Views\Trilha\Editar.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\AppKO\HomeViewModel.js" />
+    <Content Include="Scripts\AppKO\Trilha\EditarViewModel.js" />
+    <Content Include="Scripts\AppKO\Trilha\CadastrarViewModel.js" />
+    <Content Include="Scripts\AppKO\Trilha\IndexViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
