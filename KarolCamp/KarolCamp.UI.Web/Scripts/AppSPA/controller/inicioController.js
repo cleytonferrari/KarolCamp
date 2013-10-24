@@ -6,7 +6,7 @@
     };
 
     ko.applyBindings(controller, $("#content")[0]);
-
+    
     function init() {
         return controller;
     };
