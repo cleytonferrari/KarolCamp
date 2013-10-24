@@ -148,6 +148,8 @@
     <Compile Include="Areas\KO\Controllers\SalaController.cs" />
     <Compile Include="Areas\KO\Controllers\TrilhaController.cs" />
     <Compile Include="Areas\KO\KOAreaRegistration.cs" />
+    <Compile Include="Areas\SPA\Controllers\HomeController.cs" />
+    <Compile Include="Areas\SPA\SPAAreaRegistration.cs" />
     <Compile Include="Controllers\PalestraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PalestranteController.cs" />
@@ -164,6 +166,8 @@
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\html\trilha.html" />
+    <Content Include="Content\html\inicio.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -181,6 +185,10 @@
     <Content Include="Areas\KO\Views\Trilha\Editar.cshtml" />
     <Content Include="Areas\KO\Views\Trilha\Detalhe.cshtml" />
     <Content Include="Areas\KO\Views\Trilha\Deletar.cshtml" />
+    <Content Include="Areas\SPA\Views\Web.config" />
+    <Content Include="Areas\SPA\Views\Home\Index.cshtml" />
+    <Content Include="Areas\SPA\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\SPA\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\AppKO\HomeViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\DeletarViewModel.js" />
@@ -188,15 +196,30 @@
     <Content Include="Scripts\AppKO\Trilha\EditarViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\CadastrarViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\IndexViewModel.js" />
+    <Content Include="Scripts\AppSPA\controller\trilhaController.js" />
+    <Content Include="Scripts\AppSPA\controller\inicioController.js" />
+    <Content Include="Scripts\AppSPA\helpers\ajaxConfig.js" />
+    <Content Include="Scripts\AppSPA\helpers\dataContexto.js" />
+    <Content Include="Scripts\AppSPA\helpers\router.js" />
+    <Content Include="Scripts\AppSPA\main.js" />
+    <Content Include="Scripts\AppSPA\model\trilha.js" />
+    <Content Include="Scripts\AppSPA\model\palestra.js" />
+    <Content Include="Scripts\AppSPA\model\palestrante.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\knockout-2.2.1.debug.js" />
+    <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\knockout-2.3.0.debug.js" />
     <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\sammy-0.7.4.js" />
+    <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -235,6 +258,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\KO\Models\" />
+    <Folder Include="Areas\SPA\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
