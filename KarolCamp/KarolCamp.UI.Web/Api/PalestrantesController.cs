@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using KarolCamp.Aplicacao;
 using KarolCamp.Dominio;
@@ -11,31 +12,62 @@ namespace KarolCamp.UI.Web.Api
 {
     public class PalestrantesController : ApiController
     {
-        // GET api/palestrantes
         public IEnumerable<Palestrante> Get()
         {
             return Construtor.PalestranteAplicacaoMongo().ListarTodos().ToList();
         }
 
-        // GET api/palestrantes/5
-        public string Get(int id)
+        public Palestrante Get(string id)
         {
-            return "value";
+            return Construtor.PalestranteAplicacaoMongo().ListarPorId(id);
         }
 
-        // POST api/palestrantes
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post(Palestrante palestrante, HttpPostedFileBase foto)
         {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+
+            var app = Construtor.PalestranteAplicacaoMongo();
+            var arquivo = app.SalvarArquivo(foto.InputStream, foto.FileName, foto.ContentType);
+            palestrante.FotoId = arquivo;
+            app.Salvar(palestrante);
+
+            return Request.CreateResponse(HttpStatusCode.Created, palestrante);
         }
 
-        // PUT api/palestrantes/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(string id, Palestrante palestrante, HttpPostedFileBase foto)
         {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+
+            if (id != palestrante.Id)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            var app = Construtor.PalestranteAplicacaoMongo();
+            var palestranteBanco = app.ListarPorId(id);
+            if (palestranteBanco == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            if (foto != null)
+            {
+                app.ExcluirArquivo(palestrante.FotoId);
+                var arquivo = app.SalvarArquivo(foto.InputStream, foto.FileName, foto.ContentType);
+                palestrante.FotoId = arquivo;
+            }
+            app.Salvar(palestrante);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // DELETE api/palestrantes/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(string id)
         {
+            var app = Construtor.PalestranteAplicacaoMongo();
+            var palestranteBanco = app.ListarPorId(id);
+            if (palestranteBanco == null)
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+
+            app.Excluir(id);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

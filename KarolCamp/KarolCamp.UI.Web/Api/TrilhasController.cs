@@ -12,19 +12,16 @@ namespace KarolCamp.UI.Web.Api
 {
     public class TrilhasController : ApiController
     {
-        // GET api/palestra
         public IEnumerable<Trilha> Get()
         {
             return Construtor.TrilhaAplicacaoMongo().ListarTodos().ToList();
         }
 
-        // GET api/palestra/5
         public Trilha Get(string id)
         {
             return Construtor.TrilhaAplicacaoMongo().ListarPorId(id);
         }
 
-        // POST api/palestra
         public HttpResponseMessage Post(Trilha trilha)
         {
             if (!ModelState.IsValid)
@@ -36,7 +33,6 @@ namespace KarolCamp.UI.Web.Api
             return Request.CreateResponse(HttpStatusCode.Created, trilha);
         }
 
-        // PUT api/palestra/5
         public HttpResponseMessage Put(string id, Trilha trilha)
         {
             if (!ModelState.IsValid)
@@ -54,7 +50,6 @@ namespace KarolCamp.UI.Web.Api
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // DELETE api/palestra/5
         public HttpResponseMessage Delete(string id)
         {
             var app = Construtor.TrilhaAplicacaoMongo();

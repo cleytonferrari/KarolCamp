@@ -12,19 +12,16 @@ namespace KarolCamp.UI.Web.Api
 {
     public class SalasController : ApiController
     {
-        // GET api/palestra
         public IEnumerable<Sala> Get()
         {
             return Construtor.SalaAplicacaoMongo().ListarTodos().ToList();
         }
 
-        // GET api/palestra/5
         public Sala Get(string id)
         {
             return Construtor.SalaAplicacaoMongo().ListarPorId(id);
         }
 
-        // POST api/palestra
         public HttpResponseMessage Post(Sala sala)
         {
             if (!ModelState.IsValid)
@@ -36,7 +33,6 @@ namespace KarolCamp.UI.Web.Api
             return Request.CreateResponse(HttpStatusCode.Created, sala);
         }
 
-        // PUT api/palestra/5
         public HttpResponseMessage Put(string id, Sala sala)
         {
             if (!ModelState.IsValid)
@@ -54,7 +50,6 @@ namespace KarolCamp.UI.Web.Api
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // DELETE api/palestra/5
         public HttpResponseMessage Delete(string id)
         {
             var app = Construtor.SalaAplicacaoMongo();

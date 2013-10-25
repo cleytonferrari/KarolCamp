@@ -201,6 +201,11 @@
     <Content Include="Scripts\AppKO\Sala\DetalheViewModel.js" />
     <Content Include="Scripts\AppKO\Sala\EditarViewModel.js" />
     <Content Include="Scripts\AppKO\Sala\IndexViewModel.js" />
+    <Content Include="Scripts\AppKO\Palestrante\CadastrarViewModel.js" />
+    <Content Include="Scripts\AppKO\Palestrante\DeletarViewModel.js" />
+    <Content Include="Scripts\AppKO\Palestrante\DetalheViewModel.js" />
+    <Content Include="Scripts\AppKO\Palestrante\EditarViewModel.js" />
+    <Content Include="Scripts\AppKO\Palestrante\IndexViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\DeletarViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\DetalheViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\EditarViewModel.js" />
