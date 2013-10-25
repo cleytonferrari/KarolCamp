@@ -1,0 +1,29 @@
+﻿@model KarolCamp.Dominio.Sala
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+<script src="~/Scripts/AppKO/Sala/CadastrarViewModel.js"></script>
+<div class="page-header">
+    <h1>Sala <small>organize as salas onde será ministradas as palestras</small></h1>
+</div>
+
+<form data-bind="submit: salvar">
+
+    <fieldset>
+        <legend>Nova Sala</legend>
+
+        <div class="editor-label">
+            Nome:
+        </div>
+        <div class="editor-field">
+            <input type="text" name="Nome" value=" " data-bind="value: nome" />
+        </div>
+
+        <hr />
+        <p>
+            <input type="submit" value="Salvar" class="btn btn-sm btn-info" />
+            <a href="@Url.Action("Index")"> Cancelar</a>
+        </p>
+    </fieldset>
+</form>

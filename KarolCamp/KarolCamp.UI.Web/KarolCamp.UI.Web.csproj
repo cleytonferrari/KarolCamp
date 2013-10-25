@@ -134,6 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\SalasController.cs" />
     <Compile Include="Api\TrilhasController.cs" />
     <Compile Include="Api\PalestrasController.cs" />
     <Compile Include="Api\PalestrantesController.cs" />
@@ -181,8 +182,25 @@
     <Content Include="Areas\KO\Views\Trilha\Editar.cshtml" />
     <Content Include="Areas\KO\Views\Trilha\Detalhe.cshtml" />
     <Content Include="Areas\KO\Views\Trilha\Deletar.cshtml" />
+    <Content Include="Areas\KO\Views\Sala\Cadastrar.cshtml" />
+    <Content Include="Areas\KO\Views\Sala\Editar.cshtml" />
+    <Content Include="Areas\KO\Views\Sala\Deletar.cshtml" />
+    <Content Include="Areas\KO\Views\Sala\Detalhe.cshtml" />
+    <Content Include="Areas\KO\Views\Palestrante\Cadastrar.cshtml" />
+    <Content Include="Areas\KO\Views\Palestrante\Editar.cshtml" />
+    <Content Include="Areas\KO\Views\Palestrante\Deletar.cshtml" />
+    <Content Include="Areas\KO\Views\Palestrante\Detalhe.cshtml" />
+    <Content Include="Areas\KO\Views\Palestra\Cadastrar.cshtml" />
+    <Content Include="Areas\KO\Views\Palestra\Editar.cshtml" />
+    <Content Include="Areas\KO\Views\Palestra\Deletar.cshtml" />
+    <Content Include="Areas\KO\Views\Palestra\Detalhe.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\AppKO\HomeViewModel.js" />
+    <Content Include="Scripts\AppKO\Sala\CadastrarViewModel.js" />
+    <Content Include="Scripts\AppKO\Sala\DeletarViewModel.js" />
+    <Content Include="Scripts\AppKO\Sala\DetalheViewModel.js" />
+    <Content Include="Scripts\AppKO\Sala\EditarViewModel.js" />
+    <Content Include="Scripts\AppKO\Sala\IndexViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\DeletarViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\DetalheViewModel.js" />
     <Content Include="Scripts\AppKO\Trilha\EditarViewModel.js" />
