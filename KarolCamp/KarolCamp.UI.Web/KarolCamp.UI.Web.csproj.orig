@@ -186,10 +186,12 @@
     <Content Include="Areas\KO\Views\Trilha\Editar.cshtml" />
     <Content Include="Areas\KO\Views\Trilha\Detalhe.cshtml" />
     <Content Include="Areas\KO\Views\Trilha\Deletar.cshtml" />
+<<<<<<< HEAD
     <Content Include="Areas\SPA\Views\Web.config" />
     <Content Include="Areas\SPA\Views\Home\Index.cshtml" />
     <Content Include="Areas\SPA\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\SPA\Views\_ViewStart.cshtml" />
+=======
     <Content Include="Areas\KO\Views\Sala\Cadastrar.cshtml" />
     <Content Include="Areas\KO\Views\Sala\Editar.cshtml" />
     <Content Include="Areas\KO\Views\Sala\Deletar.cshtml" />
@@ -202,6 +204,7 @@
     <Content Include="Areas\KO\Views\Palestra\Editar.cshtml" />
     <Content Include="Areas\KO\Views\Palestra\Deletar.cshtml" />
     <Content Include="Areas\KO\Views\Palestra\Detalhe.cshtml" />
+>>>>>>> codigoRefatoradoNivel4
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\AppKO\HomeViewModel.js" />
     <Content Include="Scripts\AppKO\Sala\CadastrarViewModel.js" />

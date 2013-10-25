@@ -5,13 +5,13 @@
     
     self.excluir = function () {
         $.ajax({
-            url: '/api/trilhas/'+self.id(),
+            url: '/api/salas/'+self.id(),
             type: "DELETE",
             contentType: 'application/json',
             statusCode: {
                 200: function (retorno) {
                     console.log(retorno);
-                    window.location.href = '/KO/Trilha';
+                    window.location.href = '/KO/Sala';
                 },
 
                 403: function (msg) {console.log(msg);},
@@ -28,7 +28,7 @@
 
     self.construtor = function () {
         var id = $(location).attr('href').split("/").pop();
-        $.getJSON('/api/trilhas', { id: id }, function (retorno) {
+        $.getJSON('/api/salas', { id: id }, function (retorno) {
             self.id(retorno.Id);
             self.nome(retorno.Nome);
         });
