@@ -1,5 +1,44 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<KarolCamp.Dominio.Sala>
 
-<h2>Index</h2>
+@{
+    ViewBag.Title = "Sala";
+}
+<script src="~/Scripts/AppKO/Sala/IndexViewModel.js"></script>
+<div class="page-header">
+    <h1>Sala <small>organize as salas onde será ministradas as palestras</small></h1>
+    <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-primary">Nova sala</a>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Salas cadastradas
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome da sala</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko foreach: listaDeSalas -->
+                            <tr>
+                                <td style="width: 50px" data-bind="text: $index() + 1"></td>
+                                <td><a data-bind="text: $data.Nome, attr: { href: 'Sala/Detalhe/' + $data.Id }"></a></td>
+                                <td style="width: 100px">
+                                    <a class="btn btn-info btn-sm" data-bind="attr: { href: 'Sala/Editar/' + $data.Id }"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" data-bind="attr: { href: 'Sala/Deletar/' + $data.Id }"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
