@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarolCamp.UI.Web", "KarolCamp.UI.Web\KarolCamp.UI.Web.csproj", "{E6573D71-5BCC-4EB3-9947-8050013A3E24}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{87A7E0E9-D730-4A45-A41D-7E36EBEEF9E0}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -18,16 +18,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarolCamp.Dominio", "KarolC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarolCamp.Repositorio.EF", "KarolCamp.Repositorio.EF\KarolCamp.Repositorio.EF.csproj", "{9BCF461A-5024-439F-9E91-FB3C2DAA4736}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarolCamp.API", "KarolCamp.API\KarolCamp.API.csproj", "{25A31BA3-9F1A-47A5-A111-7EA2591AD781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E6573D71-5BCC-4EB3-9947-8050013A3E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6573D71-5BCC-4EB3-9947-8050013A3E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6573D71-5BCC-4EB3-9947-8050013A3E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6573D71-5BCC-4EB3-9947-8050013A3E24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1DDC427-8B04-4B64-8BEB-C7D2B32E5232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1DDC427-8B04-4B64-8BEB-C7D2B32E5232}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1DDC427-8B04-4B64-8BEB-C7D2B32E5232}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,6 +42,10 @@ Global
 		{9BCF461A-5024-439F-9E91-FB3C2DAA4736}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BCF461A-5024-439F-9E91-FB3C2DAA4736}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BCF461A-5024-439F-9E91-FB3C2DAA4736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25A31BA3-9F1A-47A5-A111-7EA2591AD781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25A31BA3-9F1A-47A5-A111-7EA2591AD781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25A31BA3-9F1A-47A5-A111-7EA2591AD781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25A31BA3-9F1A-47A5-A111-7EA2591AD781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
