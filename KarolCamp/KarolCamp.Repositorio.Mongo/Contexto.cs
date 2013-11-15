@@ -17,7 +17,7 @@ namespace KarolCamp.Repositorio.Mongo
         private readonly MongoServer server;
         private readonly MongoClient client;
 
-        private static string GetMongoDbConnectionString()
+        public static string GetMongoDbConnectionString()
         {
             return ConfigurationManager.AppSettings.Get("MONGOLAB_URI") ??
                    ConfigurationManager.ConnectionStrings["KarolCamp"].ConnectionString;

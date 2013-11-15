@@ -9,6 +9,7 @@ using KarolCamp.Dominio;
 
 namespace KarolCamp.API.Controllers
 {
+    [Authorize]
     public class TrilhasController : ApiController
     {
         // GET api/palestra
