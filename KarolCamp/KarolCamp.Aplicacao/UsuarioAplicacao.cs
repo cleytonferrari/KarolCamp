@@ -1,94 +1,85 @@
-﻿using System;
+﻿using KarolCamp.Dominio;
+using KarolCamp.Dominio.Interfaces;
+using KarolCamp.Security;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using KarolCamp.Repositorio.Mongo;
-using Microsoft.AspNet.Identity;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 
-namespace KarolCamp.Security
+namespace KarolCamp.Aplicacao
 {
-    public class UserStore<TUser> : IUserLoginStore<TUser>, IUserClaimStore<TUser>, IUserRoleStore<TUser>,
+    public class UsuarioAplicacao<TUser> : IUserLoginStore<TUser>, IUserClaimStore<TUser>, IUserRoleStore<TUser>,
      IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser>
-     where TUser : IdentityUser
+     where TUser : Usuario
     {
-        private bool _disposed;
+        private bool disposed;
 
-        private MongoDatabase db;
+        private readonly IRepositorio<Usuario> contexto;
 
-        public UserStore(string databaseName)
+        public UsuarioAplicacao(IRepositorio<Usuario> repositorio)
         {
-            
-            var url = new MongoUrl(Contexto<TUser>.GetMongoDbConnectionString());
-            var client = new MongoClient(url);
-            var server = client.GetServer();
-            db = server.GetDatabase(url.DatabaseName);
+            contexto = repositorio;
         }
 
         public Task CreateAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            db.GetCollection<TUser>("AspNetUsers").Insert(user);
-
+            contexto.Salvar(user);
             return Task.FromResult(user);
         }
 
         public Task DeleteAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
-
-            db.GetCollection("AspNetUsers").Remove((Query.EQ("_id", ObjectId.Parse(user.Id))));
+            contexto.Excluir(user.Id);
             return Task.FromResult(true);
         }
 
         public Task<TUser> FindByIdAsync(string userId)
         {
-            this.ThrowIfDisposed();
-            var user = db.GetCollection<TUser>("AspNetUsers").FindOne((Query.EQ("_id", ObjectId.Parse(userId))));
+            ThrowIfDisposed();
+            var user = (TUser)contexto.ListarPorId(userId);
             return Task.FromResult(user);
         }
 
         public Task<TUser> FindByNameAsync(string userName)
         {
-            this.ThrowIfDisposed();
-            var user = db.GetCollection<TUser>("AspNetUsers").FindOne((Query.EQ("UserName", userName)));
+            ThrowIfDisposed();
+            var user = (TUser)contexto.ListarTodos().FirstOrDefault(x => x.UserName == userName);
             return Task.FromResult(user);
         }
 
         public Task UpdateAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            db.GetCollection<TUser>("AspNetUsers").Update(Query.EQ("_id", ObjectId.Parse(user.Id)), Update.Replace(user), UpdateFlags.Upsert);
-
+            contexto.Salvar(user);
             return Task.FromResult(user);
         }
 
         private void ThrowIfDisposed()
         {
-            if (this._disposed)
-                throw new ObjectDisposedException(this.GetType().Name);
+            if (disposed)
+                throw new ObjectDisposedException(GetType().Name);
         }
 
         public void Dispose()
         {
-            this._disposed = true;
+            disposed = true;
         }
 
         public Task AddLoginAsync(TUser user, UserLoginInfo login)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -102,18 +93,14 @@ namespace KarolCamp.Security
 
         public Task<TUser> FindAsync(UserLoginInfo login)
         {
-            TUser user = null;
-            user =
-                db.GetCollection<TUser>("AspNetUsers")
-                    .FindOne(Query.And(Query.EQ("Logins.LoginProvider", login.LoginProvider),
-                        Query.EQ("Logins.ProviderKey", login.ProviderKey)));
+            var user = (TUser)contexto.ListarTodos().FirstOrDefault(x => x.Logins.Any(y => y.LoginProvider == login.LoginProvider && y.ProviderKey == login.ProviderKey));
 
             return Task.FromResult(user);
         }
 
         public Task<IList<UserLoginInfo>> GetLoginsAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -122,7 +109,7 @@ namespace KarolCamp.Security
 
         public Task RemoveLoginAsync(TUser user, UserLoginInfo login)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -133,7 +120,7 @@ namespace KarolCamp.Security
 
         public Task AddClaimAsync(TUser user, Claim claim)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -151,7 +138,7 @@ namespace KarolCamp.Security
 
         public Task<IList<Claim>> GetClaimsAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -161,7 +148,7 @@ namespace KarolCamp.Security
 
         public Task RemoveClaimAsync(TUser user, Claim claim)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -171,7 +158,7 @@ namespace KarolCamp.Security
 
         public Task<string> GetPasswordHashAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -180,16 +167,16 @@ namespace KarolCamp.Security
 
         public Task<bool> HasPasswordAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            return Task.FromResult<bool>(user.PasswordHash != null);
+            return Task.FromResult(user.PasswordHash != null);
         }
 
         public Task SetPasswordHashAsync(TUser user, string passwordHash)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -199,7 +186,7 @@ namespace KarolCamp.Security
 
         public Task<string> GetSecurityStampAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -208,7 +195,7 @@ namespace KarolCamp.Security
 
         public Task SetSecurityStampAsync(TUser user, string stamp)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -218,7 +205,7 @@ namespace KarolCamp.Security
 
         public Task AddToRoleAsync(TUser user, string role)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -230,7 +217,7 @@ namespace KarolCamp.Security
 
         public Task<IList<string>> GetRolesAsync(TUser user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -239,7 +226,7 @@ namespace KarolCamp.Security
 
         public Task<bool> IsInRoleAsync(TUser user, string role)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -248,7 +235,7 @@ namespace KarolCamp.Security
 
         public Task RemoveFromRoleAsync(TUser user, string role)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
 

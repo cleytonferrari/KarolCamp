@@ -7,16 +7,16 @@ using System.Linq;
 
 namespace KarolCamp.Repositorio.Mongo
 {
-    public class RepositorioTrilha:IRepositorio<Trilha>
+    public class RepositorioUsuario:IRepositorio<Usuario>
     {
-        private readonly Contexto<Trilha> contexto;
+        private readonly Contexto<Usuario> contexto;
 
-        public RepositorioTrilha()
+        public RepositorioUsuario()
         {
-            contexto = new Contexto<Trilha>();
+            contexto = new Contexto<Usuario>();
         }
 
-        public void Salvar(Trilha entidade)
+        public void Salvar(Usuario entidade)
         {
             contexto.Collection.Save(entidade);
         }
@@ -26,12 +26,12 @@ namespace KarolCamp.Repositorio.Mongo
             contexto.Collection.Remove(Query.EQ("_id", id));
         }
 
-        public IEnumerable<Trilha> ListarTodos()
+        public IEnumerable<Usuario> ListarTodos()
         {
             return contexto.Collection.AsQueryable();
         }
 
-        public Trilha ListarPorId(string id)
+        public Usuario ListarPorId(string id)
         {
             return contexto.Collection.AsQueryable().FirstOrDefault(x => x.Id == id);
         }

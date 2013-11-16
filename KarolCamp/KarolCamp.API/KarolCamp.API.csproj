@@ -82,6 +82,9 @@
     <Reference Include="System.Web.Http.Cors">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.0.0\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.0.0\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -155,6 +158,7 @@
     <Compile Include="Controllers\PalestrantesController.cs" />
     <Compile Include="Controllers\PalestrasController.cs" />
     <Compile Include="Controllers\SalasController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\TrilhasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,10 +185,6 @@
     <ProjectReference Include="..\KarolCamp.Dominio\KarolCamp.Dominio.csproj">
       <Project>{c88a6354-64e2-4e48-8229-c5d7962c7e7f}</Project>
       <Name>KarolCamp.Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KarolCamp.Security\KarolCamp.Security.csproj">
-      <Project>{43a7406c-f954-44c0-863e-4262af0c4941}</Project>
-      <Name>KarolCamp.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
