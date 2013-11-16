@@ -1,4 +1,5 @@
 ﻿using KarolCamp.Dominio;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -75,6 +76,28 @@ namespace KarolCamp.API.Controllers
 
             return errorResult ?? Ok();
         }
+
+        [Authorize]
+        [Route("Info")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Info()
+        {
+            if (!User.Identity.IsAuthenticated) return BadRequest("Usuário não autenticado");
+
+            var usuario = UserManager.FindById(User.Identity.GetUserId());
+            if (usuario == null) return BadRequest();
+
+            var retorno = new
+            {
+                id = User.Identity.GetUserId(),
+                nome = usuario.UserName,
+                telefone = usuario.Telefone,
+                permissoes = usuario.Roles.ToArray()
+            };
+
+            return Ok(retorno);
+        }
+
 
 
         [Route("Logout")]

@@ -76,7 +76,7 @@ namespace KarolCamp.API.Provider
         {
             var data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
             };
             return new AuthenticationProperties(data);
         }
