@@ -1,14 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using KarolCamp.Aplicacao;
-using KarolCamp.Dominio;
+﻿using KarolCamp.Dominio;
 using Microsoft.AspNet.Identity;
-using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace KarolCamp.API.Controllers
 {
@@ -55,6 +51,31 @@ namespace KarolCamp.API.Controllers
 
             return errorResult ?? Ok();
         }
+
+        [Authorize]
+        [Route("AdicionarPermissao")]
+        public async Task<IHttpActionResult> AdicionarPermissao(string permissao)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await UserManager.AddToRoleAsync(User.Identity.GetUserId(), permissao);
+            var errorResult = GetErrorResult(result);
+
+            return errorResult ?? Ok();
+        }
+
+        [Authorize]
+        [Route("RemovePermissao")]
+        public async Task<IHttpActionResult> RemovePermissao(string permissao)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await UserManager.RemoveFromRoleAsync(User.Identity.GetUserId(), permissao);
+            var errorResult = GetErrorResult(result);
+
+            return errorResult ?? Ok();
+        }
+
 
         [Route("Logout")]
         public IHttpActionResult Logout()

@@ -6,6 +6,7 @@ namespace KarolCamp.Dominio
     public class Usuario : Entidade, IUser 
     {
         public virtual string UserName { get; set; }
+        public string Telefone { get; set; }
         public virtual string PasswordHash { get; set; }
         public virtual string SecurityStamp { get; set; }
         public virtual List<string> Roles { get; private set; }
@@ -14,15 +15,15 @@ namespace KarolCamp.Dominio
 
         public Usuario()
         {
-            this.Claims = new List<IdentityUserClaim>();
-            this.Roles = new List<string>();
-            this.Logins = new List<UserLoginInfo>();
+            Claims = new List<IdentityUserClaim>();
+            Roles = new List<string>();
+            Logins = new List<UserLoginInfo>();
         }
 
         public Usuario(string userName)
             : this()
         {
-            this.UserName = userName;
+            UserName = userName;
         }
     }
 
