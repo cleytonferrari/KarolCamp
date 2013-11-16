@@ -1,4 +1,8 @@
-﻿namespace KarolCamp.Aplicacao
+﻿using KarolCamp.Dominio;
+using KarolCamp.Dominio.Interfaces;
+using KarolCamp.Security;
+
+namespace KarolCamp.Aplicacao
 {
     public class Construtor
     {
@@ -40,6 +44,11 @@
         public static TrilhaAplicacao TrilhaAplicacaoEF()
         {
             return new TrilhaAplicacao(new Repositorio.EF.RepositorioTrilha());
+        }
+
+        public static IRepositorio<Usuario> UsuarioAplicacaoMongo()
+        {
+            return new Repositorio.Mongo.RepositorioUsuario();
         }
     }
 }

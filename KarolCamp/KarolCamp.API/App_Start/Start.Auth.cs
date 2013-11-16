@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using KarolCamp.API.Provider;
-using KarolCamp.Security;
+﻿using KarolCamp.API.Provider;
+using KarolCamp.Aplicacao;
+using KarolCamp.Dominio;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using Microsoft.Owin.Infrastructure;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System;
 
 namespace KarolCamp.API
 {
@@ -18,7 +20,7 @@ namespace KarolCamp.API
         {
             PublicClientId = "self";
 
-            UserManagerFactory = () => new UserManager<IdentityUser>(new UserStore<IdentityUser>("KarolCamp"));
+            UserManagerFactory = () => new UserManager<Usuario>(new UsuarioAplicacao<Usuario>(Construtor.UsuarioAplicacaoMongo()));
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
@@ -26,13 +28,13 @@ namespace KarolCamp.API
                 Provider = new ApplicationOAuthProvider(PublicClientId, UserManagerFactory),
                 //AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                AllowInsecureHttp = true,
+                AllowInsecureHttp = true
             };
         }
 
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
-        public static Func<UserManager<IdentityUser>> UserManagerFactory { get; set; }
+        public static Func<UserManager<Usuario>> UserManagerFactory { get; set; }
 
         public static string PublicClientId { get; private set; }
 
