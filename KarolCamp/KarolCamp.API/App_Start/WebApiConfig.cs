@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace KarolCamp.API
 {
@@ -9,9 +10,9 @@ namespace KarolCamp.API
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            //config.EnableCors();
-            // Web API routes
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+            
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
