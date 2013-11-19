@@ -25,25 +25,49 @@
                 <a class="navbar-brand" href="#/">Karol Camp - SPA</a>
             </div>
 
-            <div class="collapse navbar-collapse header-collapse">
+            <div class="collapse navbar-collapse header-collapse" data-bind="if: logado">
                 <ul class="nav navbar-nav">
                     <li><a href="#/trilha">Trilha</a></li>
                     <li><a href="#/sala">Sala</a></li>
                     <li><a href="#/palestrante">Palestrante</a></li>
                     <li><a href="#/palestra">Palestra</a></li>
                 </ul>
-                <p class="navbar-text navbar-right">Código fonte em <a href="https://github.com/cleytonferrari/karolcamp" target="_blank">GitHub</a></p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-bind="text: usuario"></span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Editar Perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:;" data-bind="click: clearAccessToken">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
     <div class="container" id="conteudo">
-        
-    </div>
 
+    </div>
+    
+    <footer>
+        <p class="navbar-text navbar-right">Código fonte em <a href="https://github.com/cleytonferrari/karolcamp" target="_blank">GitHub</a></p>
+    </footer>
     <script type="text/javascript">
 
-        window.logado = sessionStorage["accessToken"] || localStorage["accessToken"];
+        window.logado = ko.observable(sessionStorage["accessToken"] || localStorage["accessToken"]);
+        window.usuario = ko.observable(sessionStorage["usuario"] || localStorage["usuario"]);
+
+        function clearAccessToken() {
+            localStorage.removeItem("accessToken");
+            sessionStorage.removeItem("accessToken");
+            localStorage.removeItem("usuario");
+            sessionStorage.removeItem("usuario");
+            logado(false);
+            usuario('');
+
+            location.replace('#/login');
+        };
         
         (function () {
             require(["main.js"], function () {

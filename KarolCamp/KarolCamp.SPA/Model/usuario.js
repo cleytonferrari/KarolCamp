@@ -52,18 +52,22 @@
 
     function navegarLogado(userName, accessToken, persistir) {
         if (accessToken) {
-            setAccessToken(accessToken, persistir);
-            logado = sessionStorage["accessToken"] || localStorage["accessToken"];
+            setAccessToken(accessToken, persistir, userName);
+            
+            logado(true);
+            usuario(userName);
+
             location.replace('#/');
-            //mostrar o nome do usuario na tela
         }
     }
 
-    function setAccessToken(accessToken, persistir) {
+    function setAccessToken(accessToken, persistir, userName) {
         if (persistir) {
             localStorage["accessToken"] = accessToken;
+            localStorage["usuario"] = userName;
         } else {
             sessionStorage["accessToken"] = accessToken;
+            sessionStorage["usuario"] = userName;
         }
     };
 

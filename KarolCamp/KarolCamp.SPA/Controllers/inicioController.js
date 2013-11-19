@@ -5,7 +5,7 @@
         palestra: palestra
     };
 
-    ko.applyBindings(controller, $("#conteudo")[0]);
+    ko.applyBindings(controller, $('body')[0]);
 
     function init() {
         return controller;

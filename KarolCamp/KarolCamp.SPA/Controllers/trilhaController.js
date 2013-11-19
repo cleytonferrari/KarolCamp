@@ -4,8 +4,7 @@
         trilha: trilha
     };
 
-    ko.applyBindings(controller, $("#content")[0]);
-
+    ko.applyBindings(controller, $('body')[0]);
 
     function init() {
         return controller;
