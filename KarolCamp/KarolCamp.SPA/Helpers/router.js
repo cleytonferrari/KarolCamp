@@ -6,13 +6,21 @@
     return sammy('#conteudo', function () {
 
         this.get('#/', function (context) {
-            this.load('/Views/inicio.html', { cache: true }).then(function (response) {
+            if (!logado) return this.redirect('#/login');
+            this.load('/Views/inicio.html', { cache: false }).then(function (response) {
                 setConfig("Karol Camp SPA");
                 context.$element().html(response);
             });
         });
+        this.get('#/login', function (context) {
+            this.load('/Views/login.html', { cache: false }).then(function (response) {
+                setConfig("Karol Camp SPA: Acessar o sistema");
+                context.$element().html(response);
+            });
+        });
         this.get('#/trilha', function (context) {
-            this.load('/Views/trilha.html', { cache: true }).then(function (response) {
+            if (!logado) return this.redirect('#/');
+            this.load('/Views/trilha/index.html', { cache: false }).then(function (response) {
                 setConfig("Karol Camp SPA: Trilha");
                 context.$element().html(response);
             });

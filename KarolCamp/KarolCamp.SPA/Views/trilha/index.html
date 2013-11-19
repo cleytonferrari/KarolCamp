@@ -1,0 +1,46 @@
+﻿<script type="text/javascript">
+    (function () {
+        require(["main.js"], function () {
+            require.undef("Controllers/trilhaController");
+            require(["Controllers/trilhaController"]);
+        });
+    })();
+</script>
+
+<div class="page-header">
+    <h1>Trilha <small>organize as trilhas de suas palestras</small></h1>
+    <a href="" class="btn btn-sm btn-primary">Nova trilha</a>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Trilhas cadastradas
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome da trilha</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko foreach: trilha.listaDeTrilhas -->
+                        <tr>
+                            <td style="width: 50px" data-bind="text: $index() + 1"></td>
+                            <td><a data-bind="text: Nome, attr: { href: 'Trilha/Detalhe/' + Id() }"></a></td>
+                            <td style="width: 100px">
+                                <a class="btn btn-info btn-sm" data-bind="attr: { href: 'Trilha/Editar/' + Id() }"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" data-bind="attr: { href: 'Trilha/Deletar/' + Id() }"><span class="glyphicon glyphicon-trash"></span></a>
+                            </td>
+                        </tr>
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -72,6 +72,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Controllers\loginController.js" />
     <Content Include="Controllers\inicioController.js" />
     <Content Include="Controllers\trilhaController.js" />
     <Content Include="Helpers\ajaxConfig.js" />
@@ -81,6 +82,7 @@
     <Content Include="main.js" />
     <Content Include="Model\palestra.js" />
     <Content Include="Model\palestrante.js" />
+    <Content Include="Model\usuario.js" />
     <Content Include="Model\trilha.js" />
     <Content Include="packages.config" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -91,13 +93,15 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Scripts\knockout-3.0.0.debug.js" />
-    <Content Include="Scripts\knockout-3.0.0.js" />
+    <Content Include="Scripts\knockout-2.2.1.debug.js" />
+    <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Views\inicio.html" />
+    <Content Include="Views\login.html" />
+    <Content Include="Views\trilha\index.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
   </ItemGroup>

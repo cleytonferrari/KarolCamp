@@ -1,4 +1,10 @@
-﻿using KarolCamp.Dominio;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Web;
+using System.Web.Mvc;
+using KarolCamp.Dominio;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -6,10 +12,11 @@ using Microsoft.Owin.Security.Cookies;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace KarolCamp.API.Controllers
 {
-    [RoutePrefix("api/Usuarios")]
+    [System.Web.Http.RoutePrefix("api/Usuarios")]
     public class UsuariosController : ApiController
     {
         public UserManager<Usuario> UserManager { get; private set; }
@@ -40,8 +47,8 @@ namespace KarolCamp.API.Controllers
             return errorResult ?? Ok();
         }
 
-        [Authorize]
-        [Route("MudarSenha")]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.Route("MudarSenha")]
         public async Task<IHttpActionResult> MudarSenha(SenhaModel model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -53,8 +60,8 @@ namespace KarolCamp.API.Controllers
             return errorResult ?? Ok();
         }
 
-        [Authorize]
-        [Route("AdicionarPermissao")]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.Route("AdicionarPermissao")]
         public async Task<IHttpActionResult> AdicionarPermissao(string permissao)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -65,8 +72,8 @@ namespace KarolCamp.API.Controllers
             return errorResult ?? Ok();
         }
 
-        [Authorize]
-        [Route("RemovePermissao")]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.Route("RemovePermissao")]
         public async Task<IHttpActionResult> RemovePermissao(string permissao)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -77,9 +84,9 @@ namespace KarolCamp.API.Controllers
             return errorResult ?? Ok();
         }
 
-        [Authorize]
-        [Route("Info")]
-        [HttpGet]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.Route("Info")]
+        [System.Web.Http.HttpGet]
         public async Task<IHttpActionResult> Info()
         {
             if (!User.Identity.IsAuthenticated) return BadRequest("Usuário não autenticado");
@@ -98,14 +105,34 @@ namespace KarolCamp.API.Controllers
             return Ok(retorno);
         }
 
-
-
-        [Route("Logout")]
+        [System.Web.Http.Route("Logout")]
         public IHttpActionResult Logout()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
+
+        [System.Web.Http.Route("Token")]
+        public async Task<IHttpActionResult> Token(LoginModel login)
+        {
+            var baseUrl = string.Format((HttpContext.Current.Request.Url.Port != 80) ? "{0}://{1}:{2}" : "{0}://{1}",
+                HttpContext.Current.Request.Url.Scheme, HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.Url.Port);
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                var content = new FormUrlEncodedContent(new[] {
+                 new KeyValuePair<string, string>("grant_type", "password"),
+                 new KeyValuePair<string, string>("username", login.Login),
+                 new KeyValuePair<string, string>("password", login.Senha)
+             });
+                var result = client.PostAsync("/token", content).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+
+                return Ok(JsonConvert.DeserializeObject(resultContent));
+            }
+        }
+
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
@@ -128,5 +155,11 @@ namespace KarolCamp.API.Controllers
 
         public string SenhaVelha { get; set; }
         public string SenhaNova { get; set; }
+    }
+
+    public class LoginModel
+    {
+        public string Login { get; set; }
+        public string Senha { get; set; }
     }
 }

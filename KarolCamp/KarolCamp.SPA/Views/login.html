@@ -1,0 +1,39 @@
+﻿<script type="text/javascript">
+    (function () {
+        require(["main.js"], function () {
+            require.undef("Controllers/loginController");
+            require(["Controllers/loginController"]);
+        });
+    })();
+</script>
+
+<div class="jumbotron">
+    <h1>Karol Camp</h1>
+    <p>Sistema para gerenciar palestras, trilhas, salas e muito mais!</p>
+</div>
+
+<form data-bind="submit: entrar">
+    <fieldset>
+        <legend>Acessar o sistema</legend>
+
+        <div>
+            <label>Login</label>
+        </div>
+        <div>
+            <input type="text" value="" data-bind="value: login" />
+        </div>
+        <div>
+            <label>Senha</label>
+        </div>
+        <div>
+            <input type="password" value="" data-bind="value: senha" />
+        </div>
+        <div>
+            <input type="checkbox" data-bind="checked: persistirLogin" /> Lembrar?
+        </div>
+        <hr />
+        <p>
+            <input type="submit" value="Salvar" class="btn btn-sm btn-info" />
+        </p>
+    </fieldset>
+</form>
